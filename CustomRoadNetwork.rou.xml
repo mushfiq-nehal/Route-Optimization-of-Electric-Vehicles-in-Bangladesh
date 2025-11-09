@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<routes>
+
+
+<vType id="Default_EV" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="4.0" width="1.8" maxSpeed="13.9" guiShape="passenger" emissionClass="HBEFA3/PC_G_EU4">
+  <param key="has.battery.device" value="true"/>
+  <param key="device.battery.capacity" value="35000"/> 
+  <param key="device.battery.initialCharge" value="35000"/>
+  <param key="device.battery.vehicleMass" value="1830"/>
+  <param key="device.battery.maximumPower" value="150000"/>
+  <param key="device.battery.propulsionEfficiency" value="0.95"/>
+  <param key="device.battery.recuperationEfficiency" value="0.90"/>
+</vType>
+  
+  <vType id="Easybike_ER-02B" vClass="evehicle" accel="1.0" decel="2.5" sigma="0.5" length="2.87" width="1.05" maxSpeed="13.9" guiShape="passenger" emissionClass="HBEFA3/PC_G_EU4">
+    <param key="has.battery.device" value="true"/>
+    <param key="device.battery.capacity" value="1008000"/>
+    <param key="device.battery.initialCharge" value="1008000"/>
+    <param key="device.battery.vehicleMass" value="700"/>
+    <param key="device.battery.maximumPower" value="1000"/>
+    <param key="device.battery.propulsionEfficiency" value="0.85"/>
+    <param key="device.battery.recuperationEfficiency" value="0.80"/>
+    <param key="maxLoadingCapacity" value="500"/>
+    <param key="continuedTripMileage" value="120-150"/>
+    <param key="chargeTime" value="6-8"/>
+    <param key="numPassengers" value="5"/>
+    <param key="climbingCapacity" value="30"/>
+    <param key="brakeMode" value="drum"/>
+    <param key="wheelbase" value="2160"/>
+    <param key="track" value="910"/>
+    <param key="backTireSize" value="3.25-16"/>
+    <param key="frontTireSize" value="3.25-16"/>
+    <param key="bodyMaterial" value="resin cloth"/>
+    <param key="inputVoltage" value="220V, 50HZ"/>
+    <param key="outputVoltage" value="DC, 60V"/>
+  </vType>
+
+  <vType id="Small_Easybike_V12" vClass="evehicle" accel="1.0" decel="2.5" sigma="0.5" length="2.37" width="0.90" maxSpeed="7.78" guiShape="passenger" emissionClass="HBEFA3/PC_G_EU4">
+    <param key="has.battery.device" value="true"/>
+    <param key="device.battery.capacity" value="672000"/>
+    <param key="device.battery.initialCharge" value="672000"/>
+    <param key="device.battery.vehicleMass" value="500"/>
+    <param key="device.battery.maximumPower" value="800"/>
+    <param key="device.battery.propulsionEfficiency" value="0.85"/>
+    <param key="device.battery.recuperationEfficiency" value="0.80"/>
+    <param key="maxLoadingCapacity" value="300"/>
+    <param key="continuedTripMileage" value="100-120"/>
+    <param key="chargeTime" value="6-8"/>
+    <param key="numPassengers" value="2 adults and 1 kid"/>
+    <param key="climbingCapacity" value="10"/>
+    <param key="brakeMode" value="drum"/>
+    <param key="wheelbase" value="1740"/>
+    <param key="track" value="790"/>
+    <param key="backTireSize" value="2.75-14"/>
+    <param key="frontTireSize" value="2.75-14"/>
+    <param key="bodyMaterial" value="cathode electrophoresis"/>
+    <param key="inputVoltage" value="220V, 50HZ"/>
+    <param key="outputVoltage" value="DC, 48V"/>
+  </vType>
+
+  <vType id="Electric_Rickshaw_V8" vClass="evehicle" accel="1.0" decel="2.5" sigma="0.5" length="2.37" width="0.90" maxSpeed="7.78" guiShape="passenger" emissionClass="HBEFA3/PC_G_EU4">
+    <param key="has.battery.device" value="true"/>
+    <param key="device.battery.capacity" value="672000"/>
+    <param key="device.battery.initialCharge" value="672000"/>
+    <param key="device.battery.vehicleMass" value="500"/>
+    <param key="device.battery.maximumPower" value="800"/>
+    <param key="device.battery.propulsionEfficiency" value="0.85"/>
+    <param key="device.battery.recuperationEfficiency" value="0.80"/>
+    <param key="maxLoadingCapacity" value="300"/>
+    <param key="continuedTripMileage" value="100-120"/>
+    <param key="chargeTime" value="6-8"/>
+    <param key="numPassengers" value="2 adults and 1 kid"/>
+    <param key="climbingCapacity" value="10"/>
+    <param key="brakeMode" value="drum"/>
+    <param key="wheelbase" value="1740"/>
+    <param key="track" value="790"/>
+    <param key="backTireSize" value="2.75-14"/>
+    <param key="frontTireSize" value="2.75-14"/>
+    <param key="bodyMaterial" value="cathode electrophoresis"/>
+    <param key="inputVoltage" value="220V, 50HZ"/>
+    <param key="outputVoltage" value="DC, 48V"/>
+  </vType>
+
+  <!-- Define vehicle routes with the same original routes -->
+  <vehicle id="t_1_Easybike_ER-02B" type="Easybike_ER-02B" depart="0.00">
+    <route edges="E3 E9"/>
+  </vehicle>
+  <vehicle id="t_1_Small_Easybike_V12" type="Small_Easybike_V12" depart="0.00">
+    <route edges="E3 E9"/>
+  </vehicle>
+  <vehicle id="t_1_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="0.00">
+    <route edges="E3 E9"/>
+  </vehicle>
+
+  <vehicle id="t_10_Easybike_ER-02B" type="Easybike_ER-02B" depart="0.00">
+    <route edges="E4"/>
+  </vehicle>
+  <vehicle id="t_10_Small_Easybike_V12" type="Small_Easybike_V12" depart="0.00">
+    <route edges="E4"/>
+  </vehicle>
+  <vehicle id="t_10_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="0.00">
+    <route edges="E4"/>
+  </vehicle>
+
+  <vehicle id="t_11_Easybike_ER-02B" type="Easybike_ER-02B" depart="0.00">
+    <route edges="E8"/>
+  </vehicle>
+  <vehicle id="t_11_Small_Easybike_V12" type="Small_Easybike_V12" depart="0.00">
+    <route edges="E8"/>
+  </vehicle>
+  <vehicle id="t_11_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="0.00">
+    <route edges="E8"/>
+  </vehicle>
+
+  <vehicle id="t_12_Easybike_ER-02B" type="Easybike_ER-02B" depart="0.00">
+    <route edges="E4 E5"/>
+  </vehicle>
+  <vehicle id="t_12_Small_Easybike_V12" type="Small_Easybike_V12" depart="0.00">
+    <route edges="E4 E5"/>
+  </vehicle>
+  <vehicle id="t_12_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="0.00">
+    <route edges="E4 E5"/>
+  </vehicle>
+
+  <vehicle id="t_2_Easybike_ER-02B" type="Easybike_ER-02B" depart="0.00">
+    <route edges="E2"/>
+  </vehicle>
+  <vehicle id="t_2_Small_Easybike_V12" type="Small_Easybike_V12" depart="0.00">
+    <route edges="E2"/>
+  </vehicle>
+  <vehicle id="t_2_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="0.00">
+    <route edges="E2"/>
+  </vehicle>
+
+  <vehicle id="t_3_Easybike_ER-02B" type="Easybike_ER-02B" depart="0.00">
+    <route edges="E3 E3.189"/>
+  </vehicle>
+  <vehicle id="t_3_Small_Easybike_V12" type="Small_Easybike_V12" depart="0.00">
+    <route edges="E3 E3.189"/>
+  </vehicle>
+  <vehicle id="t_3_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="0.00">
+    <route edges="E3 E3.189"/>
+  </vehicle>
+
+  <vehicle id="t_5_Easybike_ER-02B" type="Easybike_ER-02B" depart="0.00">
+    <route edges="E3 E3.189 E5 E6 E7"/>
+  </vehicle>
+  <vehicle id="t_5_Small_Easybike_V12" type="Small_Easybike_V12" depart="0.00">
+    <route edges="E3 E3.189 E5 E6 E7"/>
+  </vehicle>
+  <vehicle id="t_5_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="0.00">
+    <route edges="E3 E3.189 E5 E6 E7"/>
+  </vehicle>
+
+  <vehicle id="t_6_Easybike_ER-02B" type="Easybike_ER-02B" depart="0.00">
+    <route edges="E2"/>
+  </vehicle>
+  <vehicle id="t_6_Small_Easybike_V12" type="Small_Easybike_V12" depart="0.00">
+    <route edges="E2"/>
+  </vehicle>
+  <vehicle id="t_6_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="0.00">
+    <route edges="E2"/>
+  </vehicle>
+
+  <vehicle id="t_8_Easybike_ER-02B" type="Easybike_ER-02B" depart="0.00">
+    <route edges="E1"/>
+  </vehicle>
+  <vehicle id="t_8_Small_Easybike_V12" type="Small_Easybike_V12" depart="0.00">
+    <route edges="E1"/>
+  </vehicle>
+  <vehicle id="t_8_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="0.00">
+    <route edges="E1"/>
+  </vehicle>
+
+  <vehicle id="t_9_Easybike_ER-02B" type="Easybike_ER-02B" depart="0.00">
+    <route edges="E4"/>
+  </vehicle>
+  <vehicle id="t_9_Small_Easybike_V12" type="Small_Easybike_V12" depart="0.00">
+    <route edges="E4"/>
+  </vehicle>
+  <vehicle id="t_9_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="0.00">
+    <route edges="E4"/>
+  </vehicle>
+  <vehicle id="t_Default_EV" type="Default_EV" depart="0.00">
+    <route edges="E3 E9"/>
+  </vehicle>
+
+</routes>
