@@ -15,4 +15,9 @@
         <end value="3000"/>
     </time>
 
+    <output>
+        <battery-output value="battery_output.xml"/>
+        <battery-output.precision value="4"/>
+    </output>
+
 </sumoConfiguration>

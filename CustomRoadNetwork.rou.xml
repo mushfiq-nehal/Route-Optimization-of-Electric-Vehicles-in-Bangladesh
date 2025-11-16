@@ -2,7 +2,7 @@
 <routes>
 
 
-<vType id="Default_EV" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="4.0" width="1.8" maxSpeed="13.9" guiShape="passenger" emissionClass="HBEFA3/PC_G_EU4">
+<vType id="Default_EV" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="4.0" width="1.8" maxSpeed="13.9" guiShape="passenger" emissionClass="Energy/unknown">
   <param key="has.battery.device" value="true"/>
   <param key="device.battery.capacity" value="35000"/> 
   <param key="device.battery.initialCharge" value="35000"/>
@@ -12,14 +12,16 @@
   <param key="device.battery.recuperationEfficiency" value="0.90"/>
 </vType>
   
-  <vType id="Easybike_ER-02B" vClass="evehicle" accel="1.0" decel="2.5" sigma="0.5" length="2.87" width="1.05" maxSpeed="13.9" guiShape="passenger" emissionClass="HBEFA3/PC_G_EU4">
+  <vType id="Easybike_ER-02B" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="2.87" width="1.05" maxSpeed="13.9" guiShape="passenger" emissionClass="Energy/unknown">
     <param key="has.battery.device" value="true"/>
-    <param key="device.battery.capacity" value="1008000"/>
-    <param key="device.battery.initialCharge" value="1008000"/>
+    <param key="device.battery.capacity" value="3000"/>
+    <param key="device.battery.initialCharge" value="3000"/>
     <param key="device.battery.vehicleMass" value="700"/>
-    <param key="device.battery.maximumPower" value="1000"/>
+    <param key="device.battery.maximumPower" value="2000"/>
     <param key="device.battery.propulsionEfficiency" value="0.85"/>
     <param key="device.battery.recuperationEfficiency" value="0.80"/>
+    <param key="device.battery.constantPowerIntake" value="100"/>
+    <param key="device.battery.maximumChargeRate" value="2200"/>
     <param key="maxLoadingCapacity" value="500"/>
     <param key="continuedTripMileage" value="120-150"/>
     <param key="chargeTime" value="6-8"/>
@@ -35,14 +37,16 @@
     <param key="outputVoltage" value="DC, 60V"/>
   </vType>
 
-  <vType id="Small_Easybike_V12" vClass="evehicle" accel="1.0" decel="2.5" sigma="0.5" length="2.37" width="0.90" maxSpeed="7.78" guiShape="passenger" emissionClass="HBEFA3/PC_G_EU4">
+  <vType id="Small_Easybike_V12" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="2.37" width="0.90" maxSpeed="7.78" guiShape="passenger" emissionClass="Energy/unknown">
     <param key="has.battery.device" value="true"/>
-    <param key="device.battery.capacity" value="672000"/>
-    <param key="device.battery.initialCharge" value="672000"/>
+    <param key="device.battery.capacity" value="2000"/>
+    <param key="device.battery.initialCharge" value="2000"/>
     <param key="device.battery.vehicleMass" value="500"/>
-    <param key="device.battery.maximumPower" value="800"/>
+    <param key="device.battery.maximumPower" value="1500"/>
     <param key="device.battery.propulsionEfficiency" value="0.85"/>
     <param key="device.battery.recuperationEfficiency" value="0.80"/>
+    <param key="device.battery.constantPowerIntake" value="80"/>
+    <param key="device.battery.maximumChargeRate" value="1500"/>
     <param key="maxLoadingCapacity" value="300"/>
     <param key="continuedTripMileage" value="100-120"/>
     <param key="chargeTime" value="6-8"/>
@@ -58,14 +62,16 @@
     <param key="outputVoltage" value="DC, 48V"/>
   </vType>
 
-  <vType id="Electric_Rickshaw_V8" vClass="evehicle" accel="1.0" decel="2.5" sigma="0.5" length="2.37" width="0.90" maxSpeed="7.78" guiShape="passenger" emissionClass="HBEFA3/PC_G_EU4">
+  <vType id="Electric_Rickshaw_V8" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="2.37" width="0.90" maxSpeed="7.78" guiShape="passenger" emissionClass="Energy/unknown">
     <param key="has.battery.device" value="true"/>
-    <param key="device.battery.capacity" value="672000"/>
-    <param key="device.battery.initialCharge" value="672000"/>
+    <param key="device.battery.capacity" value="2500"/>
+    <param key="device.battery.initialCharge" value="2500"/>
     <param key="device.battery.vehicleMass" value="500"/>
-    <param key="device.battery.maximumPower" value="800"/>
+    <param key="device.battery.maximumPower" value="1500"/>
     <param key="device.battery.propulsionEfficiency" value="0.85"/>
     <param key="device.battery.recuperationEfficiency" value="0.80"/>
+    <param key="device.battery.constantPowerIntake" value="90"/>
+    <param key="device.battery.maximumChargeRate" value="1500"/>
     <param key="maxLoadingCapacity" value="300"/>
     <param key="continuedTripMileage" value="100-120"/>
     <param key="chargeTime" value="6-8"/>
