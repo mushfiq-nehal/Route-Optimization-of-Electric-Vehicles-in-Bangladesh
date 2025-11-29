@@ -26,7 +26,7 @@ def init_db():
         )
     """)
     
-    # New RSU-based vehicle logs table
+    # New RSU-based vehicle logs table with traffic density fields
     cur.execute("""
         CREATE TABLE IF NOT EXISTS rsu_vehicle_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -35,10 +35,20 @@ def init_db():
             rsu_position_x REAL,
             rsu_position_y REAL,
             vehicle_id TEXT NOT NULL,
+            vehicle_type TEXT,
+            edge_id TEXT,
+            lane_id TEXT,
+            lane_position REAL,
             speed REAL NOT NULL,
             battery_charge REAL NOT NULL,
             battery_capacity REAL,
             battery_percentage REAL,
+            vehicles_ahead_count INTEGER,
+            same_direction_ahead INTEGER,
+            distance_to_traffic_light REAL,
+            next_traffic_light TEXT,
+            traffic_light_state TEXT,
+            edge_occupancy_percentage REAL,
             sim_time REAL NOT NULL,
             collection_timestamp TEXT,
             rsu_received_at TEXT NOT NULL
@@ -118,7 +128,7 @@ def ingest_rsu(payload: RSUIngestPayload):
     
     rsu_received_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
     
-    # Insert vehicle data received from RSU
+    # Insert vehicle data received from RSU with traffic density fields
     records = []
     for data in payload.vehicle_data:
         records.append((
@@ -127,20 +137,33 @@ def ingest_rsu(payload: RSUIngestPayload):
             payload.rsu_position[0],
             payload.rsu_position[1],
             data.get('vehicle_id'),
+            data.get('vehicle_type'),
+            data.get('edge_id'),
+            data.get('lane_id'),
+            data.get('lane_position'),
             data.get('speed'),
             data.get('battery_charge'),
             data.get('battery_capacity'),
             data.get('battery_percentage'),
+            data.get('vehicles_ahead_count'),
+            data.get('same_direction_ahead'),
+            data.get('distance_to_traffic_light'),
+            data.get('next_traffic_light'),
+            data.get('traffic_light_state'),
+            data.get('edge_occupancy_percentage'),
             data.get('sim_time'),
             data.get('collection_timestamp'),
-            rsu_received_at  # Add rsu_received_at here to match 12 columns
+            rsu_received_at
         ))
     
     cur.executemany("""
         INSERT INTO rsu_vehicle_logs 
-        (ts_utc, rsu_id, rsu_position_x, rsu_position_y, vehicle_id, 
-         speed, battery_charge, battery_capacity, battery_percentage, sim_time, collection_timestamp, rsu_received_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (ts_utc, rsu_id, rsu_position_x, rsu_position_y, vehicle_id, vehicle_type, 
+         edge_id, lane_id, lane_position, speed, battery_charge, battery_capacity, 
+         battery_percentage, vehicles_ahead_count, same_direction_ahead, 
+         distance_to_traffic_light, next_traffic_light, traffic_light_state, 
+         edge_occupancy_percentage, sim_time, collection_timestamp, rsu_received_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, records)
     
     # Log RSU status

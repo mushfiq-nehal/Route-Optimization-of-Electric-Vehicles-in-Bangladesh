@@ -61,6 +61,200 @@ def start_simulation():
     traci.start(["sumo-gui", "-c", "CustomRoadNetwork.sumocfg"])
     print("SUMO simulation started\n")
 
+def get_traffic_density_ahead(vehicle_id, edge_id, lane_id, vehicle_position):
+    """
+    Calculate traffic density ahead of the vehicle on the same road
+    
+    Args:
+        vehicle_id: ID of the requesting vehicle
+        edge_id: Current edge ID
+        lane_id: Current lane ID  
+        vehicle_position: Position on the lane
+        
+    Returns:
+        Dictionary with traffic density information
+    """
+    try:
+        # Get all vehicles on the current edge
+        vehicles_on_edge = traci.edge.getLastStepVehicleIDs(edge_id)
+        
+        # Get vehicles on the same lane
+        vehicles_on_lane = []
+        if lane_id and ":" not in lane_id:  # Valid lane (not internal lane)
+            try:
+                vehicles_on_lane = traci.lane.getLastStepVehicleIDs(lane_id)
+            except:
+                vehicles_on_lane = []
+        
+        # Count vehicles ahead in the same direction
+        vehicles_ahead = 0
+        same_direction_ahead = 0
+        
+        for vid in vehicles_on_edge:
+            if vid == vehicle_id:
+                continue
+                
+            try:
+                # Get other vehicle's position on the lane
+                other_lane_id = traci.vehicle.getLaneID(vid)
+                other_position = traci.vehicle.getLanePosition(vid)
+                
+                # Check if vehicle is ahead (higher lane position)
+                if other_position > vehicle_position:
+                    vehicles_ahead += 1
+                    
+                    # Check if on same lane (same direction)
+                    if other_lane_id == lane_id:
+                        same_direction_ahead += 1
+                        
+            except:
+                continue
+        
+        # Find next traffic light (simplified)
+        try:
+            # Simple approach: just get a traffic light
+            tls_list = traci.trafficlight.getIDList()
+            if tls_list:
+                next_tls_id = tls_list[0]
+                tls_state = traci.trafficlight.getRedYellowGreenState(next_tls_id)
+                distance_to_tls = 100.0  # Placeholder
+            else:
+                next_tls_id = 'none'
+                tls_state = 'none'
+                distance_to_tls = -1
+        except:
+            next_tls_id = 'error'
+            tls_state = 'unknown'
+            distance_to_tls = -1
+        
+        # Calculate edge occupancy percentage
+        try:
+            # Use lane length since there's no edge.getLength()
+            if lane_id and ":" not in lane_id:  # Valid lane (not internal)
+                edge_length = traci.lane.getLength(lane_id)
+            else:
+                edge_length = 100.0  # Default fallback
+        except:
+            edge_length = 100.0  # Default fallback
+        edge_occupancy = min(100.0, (len(vehicles_on_edge) / max(1, edge_length / 7.5)) * 100)  # Assume 7.5m per vehicle
+        
+        return {
+            'vehicles_ahead': vehicles_ahead,
+            'same_direction_ahead': same_direction_ahead,
+            'distance_to_tls': distance_to_tls,
+            'next_tls_id': next_tls_id,
+            'tls_state': tls_state,
+            'edge_occupancy': round(edge_occupancy, 2),
+            'total_vehicles_on_edge': len(vehicles_on_edge)
+        }
+        
+    except Exception as e:
+        print(f"Error calculating traffic density for {vehicle_id}: {e}")
+        return {
+            'vehicles_ahead': 0,
+            'same_direction_ahead': 0,
+            'distance_to_tls': -1,
+            'next_tls_id': 'unknown',
+            'tls_state': 'unknown',
+            'edge_occupancy': 0.0,
+            'total_vehicles_on_edge': 0
+        }
+
+
+def get_next_traffic_light(vehicle_id, edge_id, vehicle_position):
+    """
+    Find the next traffic light ahead of the vehicle
+    
+    Args:
+        vehicle_id: ID of the vehicle
+        edge_id: Current edge ID
+        vehicle_position: Current position on edge
+        
+    Returns:
+        Dictionary with next traffic light information
+    """
+    try:
+        # Get vehicle route to find upcoming edges
+        route_edges = traci.vehicle.getRoute(vehicle_id)
+        current_route_index = traci.vehicle.getRouteIndex(vehicle_id)
+        
+        # Known traffic light junctions from network (using SUMO IDs)
+        traffic_lights = {
+            'J1': {'edges': ['E4', '-E5', 'E3.189'], 'name': 'Chachra'},
+            'J2': {'edges': ['-E9', '-E3', 'E3'], 'name': 'Dhormotola'},  
+            'J3': {'edges': ['-E1', 'E7', '-E4', 'E9', 'E0'], 'name': 'Doratana'},
+            'J4': {'edges': ['E6', '-E7', '-E8'], 'name': 'Monihar'},
+            'J5': {'edges': ['E5', '-E6'], 'name': 'Muroli'},
+            'J6': {'edges': ['E8', 'E1', 'E2'], 'name': 'New_Market'},
+            'J7': {'edges': ['-E2', '-E0', '-E30'], 'name': 'Palbari'}
+        }
+        
+        # Check upcoming edges for traffic lights
+        for i in range(current_route_index, len(route_edges)):
+            upcoming_edge = route_edges[i]
+            
+            for tls_name, tls_data in traffic_lights.items():
+                if upcoming_edge in tls_data['edges']:
+                    # Calculate distance
+                    if i == current_route_index:  # Same edge
+                        try:
+                            # Get current vehicle's lane
+                            current_lane = traci.vehicle.getLaneID(vehicle_id)
+                            if current_lane and ":" not in current_lane:
+                                edge_length = traci.lane.getLength(current_lane)
+                            else:
+                                edge_length = 100.0
+                        except:
+                            edge_length = 100.0
+                        distance = edge_length - vehicle_position
+                    else:  # Future edge
+                        distance = 0
+                        for j in range(current_route_index, i + 1):
+                            if j == current_route_index:
+                                try:
+                                    current_lane = traci.vehicle.getLaneID(vehicle_id)
+                                    if current_lane and ":" not in current_lane:
+                                        edge_length = traci.lane.getLength(current_lane)
+                                    else:
+                                        edge_length = 100.0
+                                except:
+                                    edge_length = 100.0
+                                distance += edge_length - vehicle_position
+                            else:
+                                try:
+                                    # Try to get first lane from the edge to calculate length
+                                    lane_name = f"{route_edges[j]}_0"
+                                    distance += traci.lane.getLength(lane_name)
+                                except:
+                                    distance += 100.0  # Default fallback
+                    
+                    # Get traffic light state
+                    try:
+                        tls_state = traci.trafficlight.getRedYellowGreenState(tls_name)
+                    except:
+                        tls_state = 'unknown'
+                    
+                    return {
+                        'tls_id': tls_name,
+                        'distance': round(distance, 2),
+                        'state': tls_state
+                    }
+        
+        # No traffic light found
+        return {
+            'tls_id': 'none',
+            'distance': -1,
+            'state': 'none'
+        }
+        
+    except Exception as e:
+        return {
+            'tls_id': 'error',
+            'distance': -1,
+            'state': 'unknown'
+        }
+
+
 def is_electric_vehicle(vehicle_id):
     """
     Check if a vehicle is an electric vehicle by checking for battery device
@@ -120,6 +314,14 @@ def collect_vehicle_data_via_rsu(sim_time):
             if traci.vehicle.getWaitingTime(vid) > 0:
                 speed = 0.0
             
+            # Get current edge and lane
+            edge_id = traci.vehicle.getRoadID(vid)
+            lane_id = traci.vehicle.getLaneID(vid)
+            lane_position = traci.vehicle.getLanePosition(vid)
+            
+            # Get traffic density data
+            traffic_data = get_traffic_density_ahead(vid, edge_id, lane_id, lane_position)
+            
             # Get battery parameters
             battery_capacity = float(traci.vehicle.getParameter(vid, "device.battery.capacity"))
             battery_charge = float(traci.vehicle.getParameter(vid, "device.battery.actualBatteryCapacity"))
@@ -127,11 +329,20 @@ def collect_vehicle_data_via_rsu(sim_time):
             # Calculate battery percentage
             battery_percentage = (battery_charge / battery_capacity * 100.0) if battery_capacity > 0 else 0.0
             
-            # Prepare vehicle data
+            # Prepare vehicle data with consistent field names
             vehicle_data = {
                 'vehicle_id': vid,
                 'vehicle_type': v_type,
                 'speed': speed,
+                'edge_id': edge_id,
+                'lane_id': lane_id,
+                'lane_position': lane_position,
+                'vehicles_ahead_count': traffic_data['vehicles_ahead'],
+                'same_direction_ahead': traffic_data['same_direction_ahead'],
+                'distance_to_traffic_light': traffic_data['distance_to_tls'],
+                'next_traffic_light': traffic_data['next_tls_id'],
+                'traffic_light_state': traffic_data['tls_state'],
+                'edge_occupancy_percentage': traffic_data['edge_occupancy'],
                 'battery_charge': battery_charge,
                 'battery_capacity': battery_capacity,
                 'battery_percentage': battery_percentage,

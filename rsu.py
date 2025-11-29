@@ -67,6 +67,18 @@ class RSU:
             'vehicle_type': 'EV'
         }
         
+        # Log traffic density information
+        if 'vehicles_ahead_count' in vehicle_data:
+            traffic_info = (
+                f"[RSU-{self.rsu_id}] EV {vehicle_id}: "
+                f"{vehicle_data['vehicles_ahead_count']} vehicles ahead, "
+                f"{vehicle_data.get('same_direction_ahead', 0)} same direction, "
+                f"Edge occupancy: {vehicle_data.get('edge_occupancy_percentage', 0.0)}%"
+            )
+            if vehicle_data.get('next_traffic_light', 'none') != 'none':
+                traffic_info += f", Next TLS: {vehicle_data['next_traffic_light']} ({vehicle_data.get('distance_to_traffic_light', 0.0)}m)"
+            print(traffic_info)
+        
         self.vehicle_buffer.append(enriched_data)
         self.connected_vehicles.add(vehicle_id)
         

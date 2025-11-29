@@ -1,0 +1,72 @@
+[
+  {
+    "rsu_id": "RSU_Chachra",
+    "rsu_position": [
+      -165.47,
+      -199.59
+    ],
+    "connected_vehicles": 0,
+    "buffered_records": 0,
+    "vehicle_data": []
+  },
+  {
+    "rsu_id": "RSU_Dhormotola",
+    "rsu_position": [
+      -194.59,
+      27.16
+    ],
+    "connected_vehicles": 0,
+    "buffered_records": 0,
+    "vehicle_data": []
+  },
+  {
+    "rsu_id": "RSU_Doratana",
+    "rsu_position": [
+      -44.04,
+      49.98
+    ],
+    "connected_vehicles": 0,
+    "buffered_records": 0,
+    "vehicle_data": []
+  },
+  {
+    "rsu_id": "RSU_Monihar",
+    "rsu_position": [
+      79.98,
+      -8.38
+    ],
+    "connected_vehicles": 0,
+    "buffered_records": 0,
+    "vehicle_data": []
+  },
+  {
+    "rsu_id": "RSU_Muroli",
+    "rsu_position": [
+      223.72,
+      -213.15
+    ],
+    "connected_vehicles": 0,
+    "buffered_records": 0,
+    "vehicle_data": []
+  },
+  {
+    "rsu_id": "RSU_NewMarket",
+    "rsu_position": [
+      2.93,
+      170.72
+    ],
+    "connected_vehicles": 0,
+    "buffered_records": 0,
+    "vehicle_data": []
+  },
+  {
+    "rsu_id": "RSU_Palbari",
+    "rsu_position": [
+      -218.7,
+      214.9
+    ],
+    "connected_vehicles": 0,
+    "buffered_records": 0,
+    "vehicle_data": []
+  }
+]
