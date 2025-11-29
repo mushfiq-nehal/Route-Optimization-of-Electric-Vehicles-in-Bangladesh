@@ -1,21 +1,18 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<additional>
-  
-  
-  <chargingStation id="cs_er02b" lane="E3_0" startPos="0" endPos="5" power="2200" efficiency="0.9" chargeDelay="5" vehicleClasses="evehicle"/>
-  
-  
-  <chargingStation id="cs_v12" lane="E4_0" startPos="0" endPos="5" power="1500" efficiency="0.9" chargeDelay="5" vehicleClasses="evehicle"/>
-  
-  
-  <chargingStation id="cs_v8" lane="E2_0" startPos="0" endPos="5" power="1500" efficiency="0.9" chargeDelay="5" vehicleClasses="evehicle"/>
-  
+<?xml version="1.0" encoding="UTF-8"?>
 
-  <chargingStation id="cs_palbari_west" lane="E0_0" startPos="0" endPos="10" power="2200" efficiency="0.9" chargeDelay="5" vehicleClasses="evehicle"/>
-  <chargingStation id="cs_doratana_central" lane="E1_0" startPos="0" endPos="10" power="2200" efficiency="0.9" chargeDelay="5" vehicleClasses="evehicle"/>
-  <chargingStation id="cs_newmarket_out" lane="-E2_0" startPos="0" endPos="10" power="2200" efficiency="0.9" chargeDelay="5" vehicleClasses="evehicle"/>
-  <chargingStation id="cs_dhormotola_out" lane="-E30_0" startPos="0" endPos="10" power="2200" efficiency="0.9" chargeDelay="5" vehicleClasses="evehicle"/>
-  <chargingStation id="cs_chachra_out" lane="E5_0" startPos="0" endPos="10" power="2200" efficiency="0.9" chargeDelay="5" vehicleClasses="evehicle"/>
-  <chargingStation id="cs_muroli_out" lane="-E5_0" startPos="0" endPos="10" power="2200" efficiency="0.9" chargeDelay="5" vehicleClasses="evehicle"/>
-  <chargingStation id="cs_monihar_area" lane="E7_0" startPos="0" endPos="10" power="2200" efficiency="0.9" chargeDelay="5" vehicleClasses="evehicle"/>
+<!-- generated on 2025-11-18 22:23:05 by Eclipse SUMO netedit Version 1.22.0
+-->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <!-- StoppingPlaces -->
+    <chargingStation id="cs_chachra_out" lane="E5_0" startPos="0.00" endPos="10.00" power="2200.00" efficiency="0.90" chargeDelay="5000"/>
+    <chargingStation id="cs_dhormotola_out" lane="-E30_0" startPos="0.00" endPos="10.00" power="2200.00" efficiency="0.90" chargeDelay="5000"/>
+    <chargingStation id="cs_doratana_central" lane="E1_0" startPos="0.00" endPos="10.00" power="2200.00" efficiency="0.90" chargeDelay="5000"/>
+    <chargingStation id="cs_er02b" lane="E3_0" startPos="0.00" endPos="5.00" power="2200.00" efficiency="0.90" chargeDelay="5000"/>
+    <chargingStation id="cs_monihar_area" lane="E7_0" startPos="0.00" endPos="10.00" power="2200.00" efficiency="0.90" chargeDelay="5000"/>
+    <chargingStation id="cs_muroli_out" lane="-E5_0" startPos="0.00" endPos="10.00" power="2200.00" efficiency="0.90" chargeDelay="5000"/>
+    <chargingStation id="cs_newmarket_out" lane="-E2_0" startPos="0.00" endPos="10.00" power="2200.00" efficiency="0.90" chargeDelay="5000"/>
+    <chargingStation id="cs_palbari_west" lane="E0_0" startPos="0.00" endPos="10.00" power="2200.00" efficiency="0.90" chargeDelay="5000"/>
+    <chargingStation id="cs_v12" lane="E4_0" startPos="0.00" endPos="5.00" power="1500.00" efficiency="0.90" chargeDelay="5000"/>
+    <chargingStation id="cs_v8" lane="E2_0" startPos="0.00" endPos="5.00" power="1500.00" efficiency="0.90" chargeDelay="5000"/>
 </additional>

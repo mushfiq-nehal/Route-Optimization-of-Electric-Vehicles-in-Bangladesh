@@ -1,5 +1,5 @@
 """
-Quick Test Script - Runs simulation in non-GUI mode for 100 steps
+Quick Test Script - Optimized for speed and debugging hangs
 """
 import traci
 from rsu import RSUNetwork
@@ -8,17 +8,24 @@ import requests
 SERVER_URL = "http://127.0.0.1:8000"
 RSU_COVERAGE_RADIUS = 500.0
 
+def is_electric_vehicle(vehicle_id):
+    """Check if vehicle is EV"""
+    try:
+        has_battery = traci.vehicle.getParameter(vehicle_id, "has.battery.device")
+        return has_battery and has_battery.lower() == "true"
+    except:
+        return False
+
 def setup_rsu_network():
-    """Setup RSU network"""
+    """Setup minimal RSU network"""
     rsu_network = RSUNetwork(SERVER_URL)
     
+    # Only 3 RSUs for faster testing
     rsu_positions = {
-        'RSU_Chachra': (-165.47, -199.59),
-        'RSU_Dhormotola': (-194.59, 27.16),
+        'RSU_Palbari': (-218.70, 214.90),
         'RSU_Doratana': (-44.04, 49.98),
-        'RSU_Monihar': (79.98, -8.38),
-        'RSU_Muroli': (223.72, -213.15),
         'RSU_NewMarket': (2.93, 170.72),
+    }
         'RSU_Palbari': (-218.70, 214.90),
     }
     

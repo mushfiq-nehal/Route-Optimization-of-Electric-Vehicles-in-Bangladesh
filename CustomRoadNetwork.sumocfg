@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2025-08-10 11:04:33 by Eclipse SUMO sumo Version 1.22.0
+<!-- generated on 2025-11-19 00:38:32 by Eclipse SUMO sumo Version 1.22.0
 -->
 
 <sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
@@ -11,13 +11,13 @@
         <additional-files value="chargingStations.add.xml"/>
     </input>
 
-    <time>
-        <end value="3000"/>
-    </time>
-
     <output>
         <battery-output value="battery_output.xml"/>
         <battery-output.precision value="4"/>
     </output>
+
+    <time>
+        <end value="1000"/>
+    </time>
 
 </sumoConfiguration>

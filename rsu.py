@@ -45,20 +45,26 @@ class RSU:
         )
         return distance <= self.coverage_radius
     
-    def collect_vehicle_data(self, vehicle_id: str, vehicle_data: Dict):
+    def collect_vehicle_data(self, vehicle_id: str, vehicle_data: Dict, is_ev: bool = True):
         """
         Collect data from a vehicle within range
         
         Args:
             vehicle_id: ID of the vehicle
             vehicle_data: Dictionary containing vehicle telemetry data
+            is_ev: Whether the vehicle is an EV (only EVs are tracked)
         """
+        # Only collect data from EVs
+        if not is_ev:
+            return
+        
         # Add RSU metadata to the vehicle data
         enriched_data = {
             **vehicle_data,
             'rsu_id': self.rsu_id,
             'rsu_position': self.position,
-            'collection_timestamp': datetime.utcnow().isoformat(timespec="seconds") + "Z"
+            'collection_timestamp': datetime.utcnow().isoformat(timespec="seconds") + "Z",
+            'vehicle_type': 'EV'
         }
         
         self.vehicle_buffer.append(enriched_data)
@@ -190,7 +196,7 @@ class RSUNetwork:
         
         return nearest_rsu
     
-    def collect_vehicle_data(self, vehicle_id: str, vehicle_position: tuple, vehicle_data: Dict):
+    def collect_vehicle_data(self, vehicle_id: str, vehicle_position: tuple, vehicle_data: Dict, is_ev: bool = True):
         """
         Route vehicle data to the nearest RSU
         
@@ -198,13 +204,20 @@ class RSUNetwork:
             vehicle_id: ID of the vehicle
             vehicle_position: (x, y) coordinates
             vehicle_data: Vehicle telemetry data
+            is_ev: Whether the vehicle is an EV (only EVs are tracked)
         """
+        # Only process EVs
+        if not is_ev:
+            return
+        
         nearest_rsu = self.find_nearest_rsu(vehicle_position)
         
         if nearest_rsu:
-            nearest_rsu.collect_vehicle_data(vehicle_id, vehicle_data)
+            nearest_rsu.collect_vehicle_data(vehicle_id, vehicle_data, is_ev)
         else:
-            print(f"[RSU Network] Warning: Vehicle {vehicle_id} not in range of any RSU")
+            # Silent skip for non-EVs, only warn for EVs
+            if is_ev:
+                print(f"[RSU Network] Warning: EV {vehicle_id} not in range of any RSU")
     
     def send_all_data(self, batch_size: int = 50):
         """

@@ -1,0 +1,105 @@
+========================================================================================================================
+PALBARI TO DORATANA ROUTE COMPARISON - DETAILED TABLE
+========================================================================================================================
+
+COMPARISON TABLE:
+------------------------------------------------------------------------------------------------------------------------
+Rank   Route Name                          Battery Used    Distance     Time       Efficiency      Status
+                                           (Wh / %)        (km)         (min)      (Wh/km)        
+------------------------------------------------------------------------------------------------------------------------
+🏆 1    Route 1: Direct                     245.44 / 16.4%  0.19         3.07       1311.63         ✓ Completed
+   2    Route 2: Via Dhormotola             316.61 / 21.1%  0.30         5.12       1069.49         ✓ Completed
+   3    Route 4: Via New Market             347.47 / 23.2%  0.31         4.63       1135.92         ✓ Completed
+   4    Route 5: Via New Market & Monihar   523.77 / 34.9%  0.50         7.22       1049.55         ✓ Completed
+   5    Route 3: Via Dhormotola & Chachra   630.91 / 42.1%  0.66         9.50       961.52          ✓ Completed
+
+
+DETAILED BREAKDOWN BY ROUTE:
+========================================================================================================================
+
+RANK #1 - Route 1: Direct
+------------------------------------------------------------------------------------------------------------------------
+  Route Path:              Palbari → Doratana
+  Edges:                   E0
+  Expected Distance:       2.41 km
+  Actual Distance:         187.13 m (0.19 km)
+  Initial Battery:         1500.00 Wh
+  Final Battery:           1254.56 Wh
+  Battery Consumed:        245.44 Wh (16.36%)
+  Travel Time:             184.00 seconds (3.07 minutes)
+  Average Speed:           1.02 m/s (3.66 km/h)
+  Energy Efficiency:       1311.63 Wh/km
+  Status:                  Completed
+
+RANK #2 - Route 2: Via Dhormotola
+------------------------------------------------------------------------------------------------------------------------
+  Route Path:              Palbari → Dhormotola → Doratana
+  Edges:                   E3 E9
+  Expected Distance:       3.42 km
+  Actual Distance:         296.04 m (0.30 km)
+  Initial Battery:         1500.00 Wh
+  Final Battery:           1183.39 Wh
+  Battery Consumed:        316.61 Wh (21.11%)
+  Travel Time:             307.00 seconds (5.12 minutes)
+  Average Speed:           0.96 m/s (3.47 km/h)
+  Energy Efficiency:       1069.49 Wh/km
+  Status:                  Completed
+
+RANK #3 - Route 4: Via New Market
+------------------------------------------------------------------------------------------------------------------------
+  Route Path:              Palbari → New Market → Doratana
+  Edges:                   E2 -E1
+  Expected Distance:       3.62 km
+  Actual Distance:         305.89 m (0.31 km)
+  Initial Battery:         1500.00 Wh
+  Final Battery:           1152.53 Wh
+  Battery Consumed:        347.47 Wh (23.16%)
+  Travel Time:             278.00 seconds (4.63 minutes)
+  Average Speed:           1.10 m/s (3.96 km/h)
+  Energy Efficiency:       1135.92 Wh/km
+  Status:                  Completed
+
+RANK #4 - Route 5: Via New Market & Monihar
+------------------------------------------------------------------------------------------------------------------------
+  Route Path:              Palbari → New Market → Monihar → Doratana
+  Edges:                   E2 -E8 E7
+  Expected Distance:       5.70 km
+  Actual Distance:         499.04 m (0.50 km)
+  Initial Battery:         1500.00 Wh
+  Final Battery:           976.23 Wh
+  Battery Consumed:        523.77 Wh (34.92%)
+  Travel Time:             433.00 seconds (7.22 minutes)
+  Average Speed:           1.15 m/s (4.15 km/h)
+  Energy Efficiency:       1049.55 Wh/km
+  Status:                  Completed
+
+RANK #5 - Route 3: Via Dhormotola & Chachra
+------------------------------------------------------------------------------------------------------------------------
+  Route Path:              Palbari → Dhormotola → Chachra → Doratana
+  Edges:                   E3 E3.189 -E4
+  Expected Distance:       6.96 km
+  Actual Distance:         656.16 m (0.66 km)
+  Initial Battery:         1500.00 Wh
+  Final Battery:           869.09 Wh
+  Battery Consumed:        630.91 Wh (42.06%)
+  Travel Time:             570.00 seconds (9.50 minutes)
+  Average Speed:           1.15 m/s (4.14 km/h)
+  Energy Efficiency:       961.52 Wh/km
+  Status:                  Completed
+
+========================================================================================================================
+SUMMARY STATISTICS:
+========================================================================================================================
+
+Best Route:              Route 1: Direct
+  Battery Used:          245.44 Wh (16.36%)
+  Travel Time:           3.07 minutes
+  Efficiency:            1311.63 Wh/km
+
+Worst Route:             Route 3: Via Dhormotola & Chachra
+  Battery Used:          630.91 Wh (42.06%)
+  Travel Time:           9.50 minutes
+  Efficiency:            961.52 Wh/km
+
+Energy Savings:          385.47 Wh (61.1% more efficient)
+Time Savings:            6.43 minutes
