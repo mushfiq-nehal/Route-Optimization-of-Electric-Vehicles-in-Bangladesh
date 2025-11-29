@@ -7,6 +7,8 @@ import os
 import time
 import requests
 import traci
+import json
+from datetime import datetime
 from rsu import RSUNetwork
 
 # Constants
@@ -359,6 +361,108 @@ def collect_vehicle_data_via_rsu(sim_time):
     # Send data from all RSUs to server
     rsu_network.send_all_data(RSU_BATCH_SIZE)
 
+def export_enhanced_data_locally(rsu_network, step_count, sim_time, total_vehicles, total_evs, data_points):
+    """
+    Export enhanced traffic density data locally to JSON and CSV files
+    """
+    print("\n" + "="*60)
+    print("EXPORTING ENHANCED TRAFFIC DENSITY DATA LOCALLY")
+    print("="*60)
+    
+    all_data = []
+    total_records = 0
+    
+    # Collect data from all RSUs
+    for rsu in rsu_network.rsus:
+        if rsu.vehicle_buffer:  # Only include RSUs with data
+            rsu_data = {
+                'rsu_id': rsu.rsu_id,
+                'rsu_position': rsu.position,
+                'connected_vehicles': len(rsu.connected_vehicles),
+                'buffered_records': len(rsu.vehicle_buffer),
+                'vehicle_data': rsu.vehicle_buffer
+            }
+            all_data.append(rsu_data)
+            total_records += len(rsu.vehicle_buffer)
+            print(f"RSU {rsu.rsu_id}: {len(rsu.vehicle_buffer)} enhanced records")
+    
+    if total_records == 0:
+        print("❌ No enhanced data found in RSU buffers")
+        return None, None
+    
+    # Save to JSON file with timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    json_file = f'enhanced_traffic_density_data_{timestamp}.json'
+    
+    # Create summary metadata
+    metadata = {
+        "export_timestamp": datetime.now().isoformat(),
+        "simulation_summary": {
+            "total_steps": step_count,
+            "simulation_time_seconds": sim_time,
+            "total_vehicles_seen": total_vehicles,
+            "total_evs_tracked": total_evs,
+            "data_points_collected": data_points
+        },
+        "rsu_data": all_data
+    }
+    
+    with open(json_file, 'w') as f:
+        json.dump(metadata, f, indent=2, default=str)
+    
+    # Create flattened CSV for easy analysis
+    csv_file = f'enhanced_traffic_density_flat_{timestamp}.csv'
+    flat_records = []
+    
+    for rsu_data in all_data:
+        for record in rsu_data['vehicle_data']:
+            flat_record = {
+                'rsu_id': rsu_data['rsu_id'],
+                'rsu_position_x': rsu_data['rsu_position'][0],
+                'rsu_position_y': rsu_data['rsu_position'][1],
+                **record  # Spread all vehicle data fields
+            }
+            flat_records.append(flat_record)
+    
+    # Save flattened data to CSV
+    if flat_records:
+        try:
+            import pandas as pd
+            df = pd.DataFrame(flat_records)
+            df.to_csv(csv_file, index=False)
+            
+            print(f"\n✅ Successfully exported {total_records} enhanced records!")
+            print(f"📊 Enhanced Traffic Data Summary:")
+            print(f"  • Total Records: {len(flat_records)}")
+            print(f"  • Active RSUs: {len(all_data)}")
+            print(f"  • Data Fields: {len(flat_records[0].keys()) if flat_records else 0}")
+            
+            if 'vehicles_ahead_count' in flat_records[0]:
+                print(f"  • Vehicles Ahead Range: {df['vehicles_ahead_count'].min()}-{df['vehicles_ahead_count'].max()}")
+            if 'same_direction_ahead' in flat_records[0]:
+                print(f"  • Same Direction Range: {df['same_direction_ahead'].min()}-{df['same_direction_ahead'].max()}")
+            if 'edge_occupancy_percentage' in flat_records[0]:
+                print(f"  • Edge Occupancy Range: {df['edge_occupancy_percentage'].min():.2f}%-{df['edge_occupancy_percentage'].max():.2f}%")
+            
+        except ImportError:
+            # Fallback to manual CSV writing if pandas not available
+            with open(csv_file, 'w') as f:
+                if flat_records:
+                    # Write header
+                    f.write(','.join(flat_records[0].keys()) + '\n')
+                    # Write data
+                    for record in flat_records:
+                        f.write(','.join(str(v) for v in record.values()) + '\n')
+            print(f"\n✅ Successfully exported {total_records} enhanced records (without pandas)!")
+    
+    print("="*60)
+    print("ENHANCED DATA FILES CREATED:")
+    print(f"  • {json_file} (Complete structured data)")
+    print(f"  • {csv_file} (Flat CSV for analysis)")
+    print("="*60)
+    
+    return json_file, csv_file
+
 def run_simulation():
     """Run simulation and collect data via RSU network"""
     last_log_time = 0
@@ -442,6 +546,9 @@ def run_simulation():
     # Final data transmission
     print("\nSimulation ended. Sending remaining data...")
     rsu_network.send_all_data(RSU_BATCH_SIZE)
+    
+    # Export enhanced data locally before ending
+    export_enhanced_data_locally(rsu_network, step_count, sim_time, len(all_vehicles_seen), len(ev_vehicles_seen), total_ev_data_collected)
     
     # Print final RSU network status
     print("\nFinal RSU Network Status:")
