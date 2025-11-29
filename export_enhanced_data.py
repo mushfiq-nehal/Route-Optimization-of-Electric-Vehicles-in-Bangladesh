@@ -77,6 +77,7 @@ def export_buffered_rsu_data():
         print("  • vehicles_ahead_count")
         print("  • same_direction_ahead") 
         print("  • distance_to_traffic_light")
+        print("  • time_to_red_light")
         print("  • next_traffic_light")
         print("  • traffic_light_state")
         print("  • edge_occupancy_percentage")

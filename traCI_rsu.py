@@ -63,6 +63,77 @@ def start_simulation():
     traci.start(["sumo-gui", "-c", "CustomRoadNetwork.sumocfg"])
     print("SUMO simulation started\n")
 
+def calculate_time_to_red_light(tls_id, current_state):
+    """
+    Calculate remaining time until traffic light turns red
+    
+    Args:
+        tls_id: Traffic light ID
+        current_state: Current traffic light state string
+        
+    Returns:
+        Remaining time in seconds until red light, or -1 if error
+    """
+    try:
+        # Get current phase index and time within phase
+        current_phase = traci.trafficlight.getPhase(tls_id)
+        phase_time = traci.trafficlight.getPhaseDuration(tls_id)
+        next_switch = traci.trafficlight.getNextSwitch(tls_id)
+        current_sim_time = traci.simulation.getTime()
+        
+        # Time remaining in current phase
+        time_remaining_current_phase = next_switch - current_sim_time
+        
+        # Get all phases for this traffic light
+        try:
+            # Get the traffic light logic
+            logic = traci.trafficlight.getCompleteRedYellowGreenDefinition(tls_id)[0]
+            phases = logic.getPhases()
+            
+            # Check if current state contains green ('G' or 'g')
+            has_green = 'G' in current_state or 'g' in current_state
+            
+            if not has_green:
+                # Already red or yellow, return 0 or remaining time in current phase if yellow
+                if 'y' in current_state.lower():
+                    return max(0, time_remaining_current_phase)
+                else:
+                    return 0.0
+            
+            # If currently green, check upcoming phases
+            total_time_to_red = time_remaining_current_phase
+            phase_index = (current_phase + 1) % len(phases)
+            
+            # Look ahead through phases until we find one without green
+            while phase_index != current_phase:
+                phase_state = phases[phase_index].state
+                phase_duration = phases[phase_index].duration
+                
+                # If this phase has no green, we found when it turns red
+                if 'G' not in phase_state and 'g' not in phase_state:
+                    break
+                    
+                # Add this phase duration and move to next
+                total_time_to_red += phase_duration
+                phase_index = (phase_index + 1) % len(phases)
+            
+            return round(total_time_to_red, 1)
+            
+        except Exception as e:
+            # Fallback: assume standard timing (60s green, 5s yellow, 30s red)
+            if has_green:
+                # If green, estimate based on our standard timing
+                if time_remaining_current_phase > 5:  # Still in green phase
+                    return time_remaining_current_phase
+                else:  # Probably in yellow phase soon
+                    return time_remaining_current_phase + 5  # Add yellow time
+            else:
+                return 0.0
+                
+    except Exception as e:
+        print(f"Error calculating time to red for {tls_id}: {e}")
+        return -1
+
 def get_traffic_density_ahead(vehicle_id, edge_id, lane_id, vehicle_position):
     """
     Calculate traffic density ahead of the vehicle on the same road
@@ -221,12 +292,18 @@ def get_traffic_density_ahead(vehicle_id, edge_id, lane_id, vehicle_position):
             edge_length = 100.0  # Default fallback
         edge_occupancy = min(100.0, (len(vehicles_on_edge) / max(1, edge_length / 7.5)) * 100)  # Assume 7.5m per vehicle
         
+        # Calculate time remaining until red light
+        time_to_red = -1
+        if next_tls_id != 'none' and next_tls_id != 'error' and tls_state != 'unknown':
+            time_to_red = calculate_time_to_red_light(next_tls_id, tls_state)
+        
         return {
             'vehicles_ahead': vehicles_ahead,
             'same_direction_ahead': same_direction_ahead,
             'distance_to_tls': distance_to_tls,
             'next_tls_id': next_tls_id,
             'tls_state': tls_state,
+            'time_to_red_light': time_to_red,
             'edge_occupancy': round(edge_occupancy, 2),
             'total_vehicles_on_edge': len(vehicles_on_edge)
         }
@@ -239,6 +316,7 @@ def get_traffic_density_ahead(vehicle_id, edge_id, lane_id, vehicle_position):
             'distance_to_tls': -1,
             'next_tls_id': 'unknown',
             'tls_state': 'unknown',
+            'time_to_red_light': -1,
             'edge_occupancy': 0.0,
             'total_vehicles_on_edge': 0
         }
@@ -425,6 +503,7 @@ def collect_vehicle_data_via_rsu(sim_time):
                 'distance_to_traffic_light': traffic_data['distance_to_tls'],
                 'next_traffic_light': traffic_data['next_tls_id'],
                 'traffic_light_state': traffic_data['tls_state'],
+                'time_to_red_light': traffic_data['time_to_red_light'],
                 'edge_occupancy_percentage': traffic_data['edge_occupancy'],
                 'battery_charge': battery_charge,
                 'battery_capacity': battery_capacity,

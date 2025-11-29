@@ -76,7 +76,11 @@ class RSU:
                 f"Edge occupancy: {vehicle_data.get('edge_occupancy_percentage', 0.0)}%"
             )
             if vehicle_data.get('next_traffic_light', 'none') != 'none':
-                traffic_info += f", Next TLS: {vehicle_data['next_traffic_light']} ({vehicle_data.get('distance_to_traffic_light', 0.0)}m)"
+                time_to_red = vehicle_data.get('time_to_red_light', -1)
+                if time_to_red >= 0:
+                    traffic_info += f", Next TLS: {vehicle_data['next_traffic_light']} ({vehicle_data.get('distance_to_traffic_light', 0.0)}m, {time_to_red}s to red)"
+                else:
+                    traffic_info += f", Next TLS: {vehicle_data['next_traffic_light']} ({vehicle_data.get('distance_to_traffic_light', 0.0)}m)"
             print(traffic_info)
         
         self.vehicle_buffer.append(enriched_data)
