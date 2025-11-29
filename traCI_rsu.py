@@ -112,22 +112,103 @@ def get_traffic_density_ahead(vehicle_id, edge_id, lane_id, vehicle_position):
             except:
                 continue
         
-        # Find next traffic light (simplified)
+        # Find next traffic light and calculate actual distance
         try:
-            # Simple approach: just get a traffic light
-            tls_list = traci.trafficlight.getIDList()
-            if tls_list:
-                next_tls_id = tls_list[0]
-                tls_state = traci.trafficlight.getRedYellowGreenState(next_tls_id)
-                distance_to_tls = 100.0  # Placeholder
-            else:
-                next_tls_id = 'none'
-                tls_state = 'none'
-                distance_to_tls = -1
-        except:
-            next_tls_id = 'error'
-            tls_state = 'unknown'
+            next_tls_id = 'none'
+            tls_state = 'none'
             distance_to_tls = -1
+            
+            # Get vehicle's route and current position
+            vehicle_route = traci.vehicle.getRoute(vehicle_id)
+            route_index = traci.vehicle.getRouteIndex(vehicle_id)
+            vehicle_lane_position = traci.vehicle.getLanePosition(vehicle_id)
+            
+            # Define traffic lights and their controlled edges
+            traffic_light_edges = {
+                'J1': ['E4', '-E5', 'E3.189', 'E3'],
+                'J2': ['-E9', '-E3', 'E3'], 
+                'J3': ['-E1', 'E7', '-E4', 'E9', 'E0'],
+                'J4': ['E6', '-E7', '-E8'],
+                'J5': ['E5', '-E6'],
+                'J6': ['E8', 'E1', 'E2'],
+                'J7': ['-E2', '-E0', '-E30']
+            }
+            
+            # Look for next traffic light on the route
+            for i in range(route_index, len(vehicle_route)):
+                upcoming_edge = vehicle_route[i]
+                
+                # Check if this edge has a traffic light
+                for tls_id, controlled_edges in traffic_light_edges.items():
+                    if upcoming_edge in controlled_edges:
+                        next_tls_id = tls_id
+                        tls_state = traci.trafficlight.getRedYellowGreenState(tls_id)
+                        
+                        # Calculate distance to traffic light
+                        if i == route_index:  # Traffic light on current edge
+                            try:
+                                current_lane_length = traci.lane.getLength(lane_id)
+                                distance_to_tls = max(0, current_lane_length - vehicle_lane_position)
+                            except:
+                                distance_to_tls = 50.0  # Fallback estimate
+                        else:  # Traffic light on future edge
+                            distance_to_tls = 0
+                            # Add remaining distance on current edge
+                            try:
+                                current_lane_length = traci.lane.getLength(lane_id)
+                                distance_to_tls += max(0, current_lane_length - vehicle_lane_position)
+                            except:
+                                distance_to_tls += 50.0
+                            
+                            # Add lengths of intermediate edges
+                            for j in range(route_index + 1, i):
+                                intermediate_edge = vehicle_route[j]
+                                try:
+                                    # Use lane 0 as representative lane for edge length
+                                    intermediate_lane = f"{intermediate_edge}_0"
+                                    edge_length = traci.lane.getLength(intermediate_lane)
+                                    distance_to_tls += edge_length
+                                except:
+                                    distance_to_tls += 100.0  # Fallback estimate
+                        
+                        # Round to reasonable precision
+                        distance_to_tls = round(distance_to_tls, 1)
+                        break
+                
+                if next_tls_id != 'none':
+                    break
+            
+            # If no traffic light found in route, check if current edge has one
+            if next_tls_id == 'none':
+                current_edge = traci.vehicle.getRoadID(vehicle_id)
+                for tls_id, controlled_edges in traffic_light_edges.items():
+                    if current_edge in controlled_edges:
+                        next_tls_id = tls_id
+                        tls_state = traci.trafficlight.getRedYellowGreenState(tls_id)
+                        try:
+                            current_lane_length = traci.lane.getLength(lane_id)
+                            distance_to_tls = max(0, current_lane_length - vehicle_lane_position)
+                            distance_to_tls = round(distance_to_tls, 1)
+                        except:
+                            distance_to_tls = 50.0
+                        break
+                        
+        except Exception as e:
+            # Fallback to original simple approach if calculation fails
+            try:
+                tls_list = traci.trafficlight.getIDList()
+                if tls_list:
+                    next_tls_id = tls_list[0]
+                    tls_state = traci.trafficlight.getRedYellowGreenState(next_tls_id)
+                    distance_to_tls = 100.0  # Fallback
+                else:
+                    next_tls_id = 'none'
+                    tls_state = 'none'
+                    distance_to_tls = -1
+            except:
+                next_tls_id = 'error'
+                tls_state = 'unknown'
+                distance_to_tls = -1
         
         # Calculate edge occupancy percentage
         try:
