@@ -1,0 +1,39 @@
+============================================================
+RSU TELEMETRY DATA ANALYSIS REPORT
+Generated: 2025-12-01 22:14:18
+============================================================
+
+VEHICLE STATISTICS BY RSU
+------------------------------------------------------------
+        rsu_id  unique_vehicles  total_records  avg_speed  max_speed  min_speed  avg_battery  min_battery
+  RSU_Doratana               16            225   7.952779  13.866189   0.000000  1581.166000       765.27
+RSU_Dhormotola               10            206   8.830814  13.863218   0.000000  2192.301117       817.79
+   RSU_Palbari               16            185   8.074416  13.890083   0.000000  1786.856703       915.70
+   RSU_Chachra               11            159   8.445368  13.872015   7.114361  1097.076164       809.98
+ RSU_NewMarket               12            150   8.380143  13.888343   7.055144  1101.740133       837.17
+   RSU_Monihar                3             34   8.138280  13.851437   0.000000  1163.920588       925.22
+
+RSU PERFORMANCE METRICS
+------------------------------------------------------------
+        rsu_id  total_vehicles_served  total_transmissions  transmission_events  avg_batch_size
+  RSU_Doratana                     47                  225                    5           45.00
+RSU_Dhormotola                     40                  206                    5           41.20
+   RSU_Palbari                     57                  185                    4           46.25
+   RSU_Chachra                     30                  159                    4           39.75
+ RSU_NewMarket                     33                  150                    4           37.50
+   RSU_Monihar                      5                   34                    2           17.00
+
+TOP 10 VEHICLES
+------------------------------------------------------------
+               vehicle_id  rsus_visited  data_points  min_battery  max_battery  battery_consumed  avg_speed  first_seen  last_seen  travel_time
+ t_1_Electric_Rickshaw_V8             3           46      1012.32      1249.06            236.74   7.255284        11.0      481.0        470.0
+   t_1_Small_Easybike_V12             3           45       765.27       994.26            228.99   7.233379        11.0      471.0        460.0
+t_10_Electric_Rickshaw_V8             2           38      1056.20      1249.08            192.88   7.325129        11.0      381.0        370.0
+t_12_Electric_Rickshaw_V8             2           37      1062.30      1250.00            187.70   7.307128        21.0      381.0        360.0
+     t_12_Easybike_ER-02B             2           37      1302.95      1490.67            187.72   7.494378        21.0      381.0        360.0
+  t_10_Small_Easybike_V12             2           37       809.98       993.65            183.67   7.457561        11.0      371.0        360.0
+  t_12_Small_Easybike_V12             2           36       815.00       997.19            182.19   7.399491        21.0      371.0        350.0
+   t_9_Small_Easybike_V12             2           35       821.35       999.18            177.83   7.325169        31.0      371.0        340.0
+      t_9_Easybike_ER-02B             2           35      1313.43      1494.00            180.57   7.479105        31.0      371.0        340.0
+      t_5_Easybike_ER-02B             3           35      1133.89      1491.46            357.57  12.092604        31.0      371.0        340.0
+

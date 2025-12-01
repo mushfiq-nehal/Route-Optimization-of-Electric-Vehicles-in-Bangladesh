@@ -1,8 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<routes>
-
-
-<vType id="Default_EV" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="4.0" width="1.8" maxSpeed="13.9" guiShape="passenger" emissionClass="Energy/unknown" lcStrategic="1.0" lcCooperative="1.0" lcSpeedGain="1.0" lcKeepRight="0.0" lcSublane="1.0">
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    
+    <vType id="Default_EV" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="4.0" width="1.8" maxSpeed="13.9" guiShape="passenger" emissionClass="Energy/unknown">
   <param key="has.battery.device" value="true" />
   <param key="device.battery.capacity" value="35000" /> 
   <param key="device.battery.initialCharge" value="35000" />
@@ -12,88 +11,85 @@
   <param key="device.battery.recuperationEfficiency" value="0.90" />
 </vType>
   
-<vType id="Easybike_ER-02B" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="2.87" width="1.05" maxSpeed="13.9" guiShape="passenger" emissionClass="Energy/unknown" lcStrategic="1.0" lcCooperative="1.0" lcSpeedGain="1.0" lcKeepRight="0.0" lcSublane="1.0">
-  <param key="has.battery.device" value="true" />
-  <param key="device.battery.capacity" value="3000" />
-  <param key="device.battery.initialCharge" value="3000" />
-  <param key="device.battery.vehicleMass" value="700" />
-  <param key="device.battery.maximumPower" value="2000" />
-  <param key="device.battery.propulsionEfficiency" value="0.85" />
-  <param key="device.battery.recuperationEfficiency" value="0.80" />
-  <param key="device.battery.constantPowerIntake" value="100" />
-  <param key="device.battery.maximumChargeRate" value="2200" />
-</vType>
+  <vType id="Easybike_ER-02B" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="2.87" width="1.05" maxSpeed="13.9" guiShape="passenger" emissionClass="Energy/unknown">
+    <param key="has.battery.device" value="true" />
+    <param key="device.battery.capacity" value="3000" />
+    <param key="device.battery.initialCharge" value="3000" />
+    <param key="device.battery.vehicleMass" value="700" />
+    <param key="device.battery.maximumPower" value="2000" />
+    <param key="device.battery.propulsionEfficiency" value="0.85" />
+    <param key="device.battery.recuperationEfficiency" value="0.80" />
+    <param key="device.battery.constantPowerIntake" value="100" />
+    <param key="device.battery.maximumChargeRate" value="2200" />
+    <param key="maxLoadingCapacity" value="500" />
+    <param key="continuedTripMileage" value="120-150" />
+    <param key="chargeTime" value="6-8" />
+    <param key="numPassengers" value="5" />
+    <param key="climbingCapacity" value="30" />
+    <param key="brakeMode" value="drum" />
+    <param key="wheelbase" value="2160" />
+    <param key="track" value="910" />
+    <param key="backTireSize" value="3.25-16" />
+    <param key="frontTireSize" value="3.25-16" />
+    <param key="bodyMaterial" value="resin cloth" />
+    <param key="inputVoltage" value="220V, 50HZ" />
+    <param key="outputVoltage" value="DC, 60V" />
+  </vType>
 
-<vType id="Small_Easybike_V12" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="2.37" width="0.90" maxSpeed="7.78" guiShape="passenger" emissionClass="Energy/unknown" lcStrategic="1.0" lcCooperative="1.0" lcSpeedGain="1.0" lcKeepRight="0.0" lcSublane="1.0">
-  <param key="has.battery.device" value="true" />
-  <param key="device.battery.capacity" value="2000" />
-  <param key="device.battery.initialCharge" value="2000" />
-  <param key="device.battery.vehicleMass" value="500" />
-  <param key="device.battery.maximumPower" value="1500" />
-  <param key="device.battery.propulsionEfficiency" value="0.85" />
-  <param key="device.battery.recuperationEfficiency" value="0.80" />
-  <param key="device.battery.constantPowerIntake" value="80" />
-  <param key="device.battery.maximumChargeRate" value="1500" />
-</vType>
+  <vType id="Small_Easybike_V12" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="2.37" width="0.90" maxSpeed="7.78" guiShape="passenger" emissionClass="Energy/unknown">
+    <param key="has.battery.device" value="true" />
+    <param key="device.battery.capacity" value="2000" />
+    <param key="device.battery.initialCharge" value="2000" />
+    <param key="device.battery.vehicleMass" value="500" />
+    <param key="device.battery.maximumPower" value="1500" />
+    <param key="device.battery.propulsionEfficiency" value="0.85" />
+    <param key="device.battery.recuperationEfficiency" value="0.80" />
+    <param key="device.battery.constantPowerIntake" value="80" />
+    <param key="device.battery.maximumChargeRate" value="1500" />
+    <param key="maxLoadingCapacity" value="300" />
+    <param key="continuedTripMileage" value="100-120" />
+    <param key="chargeTime" value="6-8" />
+    <param key="numPassengers" value="2 adults and 1 kid" />
+    <param key="climbingCapacity" value="10" />
+    <param key="brakeMode" value="drum" />
+    <param key="wheelbase" value="1740" />
+    <param key="track" value="790" />
+    <param key="backTireSize" value="2.75-14" />
+    <param key="frontTireSize" value="2.75-14" />
+    <param key="bodyMaterial" value="cathode electrophoresis" />
+    <param key="inputVoltage" value="220V, 50HZ" />
+    <param key="outputVoltage" value="DC, 48V" />
+  </vType>
 
-<vType id="Electric_Rickshaw_V8" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="2.37" width="0.90" maxSpeed="7.78" guiShape="passenger" emissionClass="Energy/unknown" lcStrategic="1.0" lcCooperative="1.0" lcSpeedGain="1.0" lcKeepRight="0.0" lcSublane="1.0">
-  <param key="has.battery.device" value="true" />
-  <param key="device.battery.capacity" value="2500" />
-  <param key="device.battery.initialCharge" value="2500" />
-  <param key="device.battery.vehicleMass" value="500" />
-  <param key="device.battery.maximumPower" value="1500" />
-  <param key="device.battery.propulsionEfficiency" value="0.85" />
-  <param key="device.battery.recuperationEfficiency" value="0.80" />
-  <param key="device.battery.constantPowerIntake" value="90" />
-  <param key="device.battery.maximumChargeRate" value="1500" />
-</vType>
+  <vType id="Electric_Rickshaw_V8" vClass="evehicle" accel="1.0" decel="2.0" sigma="0.5" length="2.37" width="0.90" maxSpeed="7.78" guiShape="passenger" emissionClass="Energy/unknown">
+    <param key="has.battery.device" value="true" />
+    <param key="device.battery.capacity" value="2500" />
+    <param key="device.battery.initialCharge" value="2500" />
+    <param key="device.battery.vehicleMass" value="500" />
+    <param key="device.battery.maximumPower" value="1500" />
+    <param key="device.battery.propulsionEfficiency" value="0.85" />
+    <param key="device.battery.recuperationEfficiency" value="0.80" />
+    <param key="device.battery.constantPowerIntake" value="90" />
+    <param key="device.battery.maximumChargeRate" value="1500" />
+    <param key="maxLoadingCapacity" value="300" />
+    <param key="continuedTripMileage" value="100-120" />
+    <param key="chargeTime" value="6-8" />
+    <param key="numPassengers" value="2 adults and 1 kid" />
+    <param key="climbingCapacity" value="10" />
+    <param key="brakeMode" value="drum" />
+    <param key="wheelbase" value="1740" />
+    <param key="track" value="790" />
+    <param key="backTireSize" value="2.75-14" />
+    <param key="frontTireSize" value="2.75-14" />
+    <param key="bodyMaterial" value="cathode electrophoresis" />
+    <param key="inputVoltage" value="220V, 50HZ" />
+    <param key="outputVoltage" value="DC, 48V" />
+  </vType>
 
-
-<vType id="Private_Car" vClass="passenger" accel="2.6" decel="4.5" sigma="0.5" length="4.5" width="1.8" maxSpeed="33.33" guiShape="passenger" lcStrategic="1.0" lcCooperative="1.0" lcSpeedGain="1.0" lcKeepRight="0.0" lcSublane="1.0" color="0.8,0.8,0.8">
-</vType>
-
-<vType id="CNG_Rickshaw" vClass="passenger" accel="0.8" decel="2.0" sigma="0.5" length="2.5" width="1.0" maxSpeed="8.33" guiShape="passenger" lcStrategic="1.0" lcCooperative="1.0" lcSpeedGain="0.5" lcKeepRight="0.0" lcSublane="1.0" color="0.9,0.7,0.2">
-</vType>
-
-<vType id="Bus" vClass="bus" accel="1.2" decel="3.0" sigma="0.5" length="12.0" width="2.5" maxSpeed="19.44" guiShape="bus" lcStrategic="1.0" lcCooperative="1.0" lcSpeedGain="1.0" lcKeepRight="1.0" lcSublane="0.0" color="0.2,0.4,0.8">
-</vType>
-
-<vType id="Truck" vClass="truck" accel="1.0" decel="3.5" sigma="0.5" length="7.5" width="2.4" maxSpeed="22.22" guiShape="truck" lcStrategic="1.0" lcCooperative="1.0" lcSpeedGain="0.8" lcKeepRight="1.0" lcSublane="0.0" color="0.6,0.3,0.1">
-</vType>
-
-<vType id="Motorcycle" vClass="motorcycle" accel="3.0" decel="5.0" sigma="0.5" length="2.2" width="0.8" maxSpeed="27.78" guiShape="motorcycle" lcStrategic="1.0" lcCooperative="1.0" lcSpeedGain="1.5" lcKeepRight="0.0" lcSublane="1.0" color="0.3,0.3,0.3">
-</vType>
-
-
-
-
-<!-- Route 1 (E0) Light Traffic (5 vehicles) --><!-- Route 2 (E3 E9) Light Traffic (5 vehicles) --><!-- Route 3 (E3 E3.189 -E4) Light Traffic (5 vehicles) --><!-- Route 4 (E2 -E1) Light Traffic (5 vehicles) --><!-- Route 5 (E2 -E8 E7) Light Traffic (5 vehicles) --><vehicle id="test_route1_direct" type="Easybike_ER-02B" depart="0.00" color="red">
-  <route edges="E0" />
-</vehicle>
-
-
-<vehicle id="test_route2_dhormotola" type="Easybike_ER-02B" depart="0.00" color="blue">
-  <route edges="E3 E9" />
-</vehicle>
-
-
-<vehicle id="test_route3_chachra" type="Easybike_ER-02B" depart="0.00" color="green">
-  <route edges="E3 E3.189 -E4" />
-</vehicle>
-
-
-<vehicle id="test_route4_newmarket" type="Easybike_ER-02B" depart="0.00" color="yellow">
-  <route edges="E2 -E1" />
-</vehicle>
-
-
-<vehicle id="test_route5_monihar" type="Easybike_ER-02B" depart="0.00" color="orange">
-  <route edges="E2 -E8 E7" />
-</vehicle>
-
-
-
-
-
-
-<vehicle id="r1_v1" type="Easybike_ER-02B" depart="15.00"><route edges="E0" /></vehicle><vehicle id="r2_v1" type="Small_Easybike_V12" depart="15.00"><route edges="E3 E9" /></vehicle><vehicle id="r3_v1" type="Easybike_ER-02B" depart="15.00"><route edges="E3 E3.189 -E4" /></vehicle><vehicle id="r4_v1" type="Small_Easybike_V12" depart="15.00"><route edges="E2 -E1" /></vehicle><vehicle id="r5_v1" type="Easybike_ER-02B" depart="15.00"><route edges="E2 -E8 E7" /></vehicle><vehicle id="r1_v2" type="Small_Easybike_V12" depart="20.00"><route edges="E0" /></vehicle><vehicle id="r2_v2" type="Easybike_ER-02B" depart="20.00"><route edges="E3 E9" /></vehicle><vehicle id="r3_v2" type="Small_Easybike_V12" depart="20.00"><route edges="E3 E3.189 -E4" /></vehicle><vehicle id="r4_v2" type="Easybike_ER-02B" depart="20.00"><route edges="E2 -E1" /></vehicle><vehicle id="r5_v2" type="Small_Easybike_V12" depart="20.00"><route edges="E2 -E8 E7" /></vehicle><vehicle id="r1_v3" type="Private_Car" depart="25.00"><route edges="E0" /></vehicle><vehicle id="r2_v3" type="Private_Car" depart="25.00"><route edges="E3 E9" /></vehicle><vehicle id="r3_v3" type="Private_Car" depart="25.00"><route edges="E3 E3.189 -E4" /></vehicle><vehicle id="r4_v3" type="Private_Car" depart="25.00"><route edges="E2 -E1" /></vehicle><vehicle id="r5_v3" type="Private_Car" depart="25.00"><route edges="E2 -E8 E7" /></vehicle><vehicle id="r1_v4" type="Bus" depart="30.00"><route edges="E0" /></vehicle><vehicle id="r2_v4" type="Bus" depart="30.00"><route edges="E3 E9" /></vehicle><vehicle id="r3_v4" type="Bus" depart="30.00"><route edges="E3 E3.189 -E4" /></vehicle><vehicle id="r4_v4" type="Bus" depart="30.00"><route edges="E2 -E1" /></vehicle><vehicle id="r5_v4" type="Bus" depart="30.00"><route edges="E2 -E8 E7" /></vehicle><vehicle id="r1_v5" type="Easybike_ER-02B" depart="35.00"><route edges="E0" /></vehicle><vehicle id="r2_v5" type="Small_Easybike_V12" depart="35.00"><route edges="E3 E9" /></vehicle><vehicle id="r3_v5" type="Easybike_ER-02B" depart="35.00"><route edges="E3 E3.189 -E4" /></vehicle><vehicle id="r4_v5" type="Small_Easybike_V12" depart="35.00"><route edges="E2 -E1" /></vehicle><vehicle id="r5_v5" type="Easybike_ER-02B" depart="35.00"><route edges="E2 -E8 E7" /></vehicle></routes>
+  
+  
+  
+  
+  <vType id="Non_EV" vClass="passenger" accel="2.6" decel="4.5" sigma="0.5" length="4.5" width="1.8" maxSpeed="50.0" guiShape="passenger" emissionClass="HBEFA3/PC_G_EU4">
+    <param key="has.battery.device" value="false" />
+  </vType><vType id="Private_Car" vClass="passenger" accel="2.6" decel="4.5" sigma="0.5" length="4.5" width="1.8" maxSpeed="30.0" guiShape="passenger" emissionClass="HBEFA3/PC_G_EU4" color="1,1,0"><param key="has.battery.device" value="false" /></vType><vType id="Bus" vClass="bus" accel="1.2" decel="3.5" sigma="0.5" length="12.0" width="2.5" maxSpeed="22.0" guiShape="bus" emissionClass="HBEFA3/Bus" color="0,1,0"><param key="has.battery.device" value="false" /></vType><vType id="Truck" vClass="truck" accel="1.0" decel="3.0" sigma="0.5" length="8.0" width="2.4" maxSpeed="20.0" guiShape="truck" emissionClass="HBEFA3/HDV" color="0.5,0.5,0.5"><param key="has.battery.device" value="false" /></vType><vType id="CNG_Rickshaw" vClass="taxi" accel="1.5" decel="3.0" sigma="0.7" length="2.8" width="1.3" maxSpeed="11.0" guiShape="taxi" emissionClass="HBEFA3/LDV_G_EU4" color="0,1,1"><param key="has.battery.device" value="false" /></vType><vType id="Motorcycle" vClass="motorcycle" accel="3.0" decel="5.0" sigma="0.8" length="2.2" width="0.8" maxSpeed="25.0" guiShape="motorcycle" emissionClass="HBEFA3/LDV_G_EU4" color="1,0,0"><param key="has.battery.device" value="false" /></vType><vehicle id="R1_Easybike_ER-02B" type="Easybike_ER-02B" depart="1.00"><route edges="E3 E3.189" /></vehicle><vehicle id="R1_Small_Easybike_V12" type="Small_Easybike_V12" depart="3.00"><route edges="E3 E3.189" /></vehicle><vehicle id="R1_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="5.00"><route edges="E3 E3.189" /></vehicle><vehicle id="R1_Default_EV" type="Default_EV" depart="7.00"><route edges="E3 E3.189" /></vehicle><vehicle id="R1_Non_EV" type="Non_EV" depart="9.00"><route edges="E3 E3.189" /></vehicle><vehicle id="R2_Easybike_ER-02B" type="Easybike_ER-02B" depart="11.00"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="R2_Small_Easybike_V12" type="Small_Easybike_V12" depart="13.00"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="R2_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="15.00"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="R2_Default_EV" type="Default_EV" depart="17.00"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="R2_Non_EV" type="Non_EV" depart="19.00"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="R3_Easybike_ER-02B" type="Easybike_ER-02B" depart="21.00"><route edges="E3 E9" /></vehicle><vehicle id="R3_Small_Easybike_V12" type="Small_Easybike_V12" depart="23.00"><route edges="E3 E9" /></vehicle><vehicle id="R3_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="25.00"><route edges="E3 E9" /></vehicle><vehicle id="R3_Default_EV" type="Default_EV" depart="27.00"><route edges="E3 E9" /></vehicle><vehicle id="R3_Non_EV" type="Non_EV" depart="29.00"><route edges="E3 E9" /></vehicle><vehicle id="R4_Easybike_ER-02B" type="Easybike_ER-02B" depart="31.00"><route edges="E4" /></vehicle><vehicle id="R4_Small_Easybike_V12" type="Small_Easybike_V12" depart="33.00"><route edges="E4" /></vehicle><vehicle id="R4_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="35.00"><route edges="E4" /></vehicle><vehicle id="R4_Default_EV" type="Default_EV" depart="37.00"><route edges="E4" /></vehicle><vehicle id="R4_Non_EV" type="Non_EV" depart="39.00"><route edges="E4" /></vehicle><vehicle id="R5_Easybike_ER-02B" type="Easybike_ER-02B" depart="41.00"><route edges="E4 E5" /></vehicle><vehicle id="R5_Small_Easybike_V12" type="Small_Easybike_V12" depart="43.00"><route edges="E4 E5" /></vehicle><vehicle id="R5_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="45.00"><route edges="E4 E5" /></vehicle><vehicle id="R5_Default_EV" type="Default_EV" depart="47.00"><route edges="E4 E5" /></vehicle><vehicle id="R5_Non_EV" type="Non_EV" depart="49.00"><route edges="E4 E5" /></vehicle><vehicle id="R6_Easybike_ER-02B" type="Easybike_ER-02B" depart="51.00"><route edges="E2" /></vehicle><vehicle id="R6_Small_Easybike_V12" type="Small_Easybike_V12" depart="53.00"><route edges="E2" /></vehicle><vehicle id="R6_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="55.00"><route edges="E2" /></vehicle><vehicle id="R6_Default_EV" type="Default_EV" depart="57.00"><route edges="E2" /></vehicle><vehicle id="R6_Non_EV" type="Non_EV" depart="59.00"><route edges="E2" /></vehicle><vehicle id="R7_Easybike_ER-02B" type="Easybike_ER-02B" depart="61.00"><route edges="E8" /></vehicle><vehicle id="R7_Small_Easybike_V12" type="Small_Easybike_V12" depart="63.00"><route edges="E8" /></vehicle><vehicle id="R7_Electric_Rickshaw_V8" type="Electric_Rickshaw_V8" depart="65.00"><route edges="E8" /></vehicle><vehicle id="R7_Default_EV" type="Default_EV" depart="67.00"><route edges="E8" /></vehicle><vehicle id="R7_Non_EV" type="Non_EV" depart="69.00"><route edges="E8" /></vehicle><!-- Mixed Traffic Vehicles --><!-- Traffic on R1 route --><vehicle id="traffic_R1_Private_Car_1" type="Private_Car" depart="100.00"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Private_Car_2" type="Private_Car" depart="101.42"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Private_Car_3" type="Private_Car" depart="102.82"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Private_Car_4" type="Private_Car" depart="104.60"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Private_Car_5" type="Private_Car" depart="106.34"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Private_Car_6" type="Private_Car" depart="108.21"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Bus_1" type="Bus" depart="109.91"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Bus_2" type="Bus" depart="112.28"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Bus_3" type="Bus" depart="114.00"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Truck_1" type="Truck" depart="115.00"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_CNG_Rickshaw_1" type="CNG_Rickshaw" depart="116.13"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_CNG_Rickshaw_2" type="CNG_Rickshaw" depart="118.51"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_CNG_Rickshaw_3" type="CNG_Rickshaw" depart="120.19"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_CNG_Rickshaw_4" type="CNG_Rickshaw" depart="122.54"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_CNG_Rickshaw_5" type="CNG_Rickshaw" depart="125.36"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Motorcycle_1" type="Motorcycle" depart="126.42"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Motorcycle_2" type="Motorcycle" depart="127.61"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Motorcycle_3" type="Motorcycle" depart="129.02"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Motorcycle_4" type="Motorcycle" depart="131.30"><route edges="E3 E3.189" /></vehicle><vehicle id="traffic_R1_Motorcycle_5" type="Motorcycle" depart="132.93"><route edges="E3 E3.189" /></vehicle><!-- Traffic on R2 route --><vehicle id="traffic_R2_Private_Car_1" type="Private_Car" depart="134.75"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Private_Car_2" type="Private_Car" depart="135.88"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Private_Car_3" type="Private_Car" depart="137.99"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Private_Car_4" type="Private_Car" depart="139.14"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Private_Car_5" type="Private_Car" depart="140.30"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Private_Car_6" type="Private_Car" depart="141.56"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Bus_1" type="Bus" depart="142.86"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Bus_2" type="Bus" depart="145.19"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Bus_3" type="Bus" depart="146.25"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Truck_1" type="Truck" depart="148.19"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_CNG_Rickshaw_1" type="CNG_Rickshaw" depart="149.41"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_CNG_Rickshaw_2" type="CNG_Rickshaw" depart="152.16"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_CNG_Rickshaw_3" type="CNG_Rickshaw" depart="154.43"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_CNG_Rickshaw_4" type="CNG_Rickshaw" depart="156.93"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_CNG_Rickshaw_5" type="CNG_Rickshaw" depart="158.92"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Motorcycle_1" type="Motorcycle" depart="161.55"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Motorcycle_2" type="Motorcycle" depart="163.78"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Motorcycle_3" type="Motorcycle" depart="165.35"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Motorcycle_4" type="Motorcycle" depart="167.93"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><vehicle id="traffic_R2_Motorcycle_5" type="Motorcycle" depart="169.30"><route edges="E3 E3.189 E5 E6 E7" /></vehicle><!-- Traffic on R3 route --><vehicle id="traffic_R3_Private_Car_1" type="Private_Car" depart="171.43"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Private_Car_2" type="Private_Car" depart="173.15"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Private_Car_3" type="Private_Car" depart="175.87"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Private_Car_4" type="Private_Car" depart="177.51"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Private_Car_5" type="Private_Car" depart="180.42"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Private_Car_6" type="Private_Car" depart="181.73"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Bus_1" type="Bus" depart="183.43"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Bus_2" type="Bus" depart="186.09"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Bus_3" type="Bus" depart="187.22"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Truck_1" type="Truck" depart="189.01"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_CNG_Rickshaw_1" type="CNG_Rickshaw" depart="191.59"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_CNG_Rickshaw_2" type="CNG_Rickshaw" depart="194.18"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_CNG_Rickshaw_3" type="CNG_Rickshaw" depart="197.02"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_CNG_Rickshaw_4" type="CNG_Rickshaw" depart="199.87"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_CNG_Rickshaw_5" type="CNG_Rickshaw" depart="201.91"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Motorcycle_1" type="Motorcycle" depart="204.54"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Motorcycle_2" type="Motorcycle" depart="206.15"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Motorcycle_3" type="Motorcycle" depart="207.98"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Motorcycle_4" type="Motorcycle" depart="209.91"><route edges="E3 E9" /></vehicle><vehicle id="traffic_R3_Motorcycle_5" type="Motorcycle" depart="212.91"><route edges="E3 E9" /></vehicle><!-- Traffic on R4 route --><vehicle id="traffic_R4_Private_Car_1" type="Private_Car" depart="215.66"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Private_Car_2" type="Private_Car" depart="217.75"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Private_Car_3" type="Private_Car" depart="220.67"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Private_Car_4" type="Private_Car" depart="222.70"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Private_Car_5" type="Private_Car" depart="224.58"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Private_Car_6" type="Private_Car" depart="226.40"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Bus_1" type="Bus" depart="227.97"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Bus_2" type="Bus" depart="229.40"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Bus_3" type="Bus" depart="230.79"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Truck_1" type="Truck" depart="232.44"><route edges="E4" /></vehicle><vehicle id="traffic_R4_CNG_Rickshaw_1" type="CNG_Rickshaw" depart="234.44"><route edges="E4" /></vehicle><vehicle id="traffic_R4_CNG_Rickshaw_2" type="CNG_Rickshaw" depart="235.80"><route edges="E4" /></vehicle><vehicle id="traffic_R4_CNG_Rickshaw_3" type="CNG_Rickshaw" depart="237.79"><route edges="E4" /></vehicle><vehicle id="traffic_R4_CNG_Rickshaw_4" type="CNG_Rickshaw" depart="240.16"><route edges="E4" /></vehicle><vehicle id="traffic_R4_CNG_Rickshaw_5" type="CNG_Rickshaw" depart="242.60"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Motorcycle_1" type="Motorcycle" depart="244.44"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Motorcycle_2" type="Motorcycle" depart="247.16"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Motorcycle_3" type="Motorcycle" depart="249.47"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Motorcycle_4" type="Motorcycle" depart="251.27"><route edges="E4" /></vehicle><vehicle id="traffic_R4_Motorcycle_5" type="Motorcycle" depart="253.98"><route edges="E4" /></vehicle><!-- Traffic on R5 route --><vehicle id="traffic_R5_Private_Car_1" type="Private_Car" depart="255.67"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Private_Car_2" type="Private_Car" depart="258.04"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Private_Car_3" type="Private_Car" depart="260.53"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Private_Car_4" type="Private_Car" depart="262.34"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Private_Car_5" type="Private_Car" depart="263.37"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Private_Car_6" type="Private_Car" depart="264.47"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Bus_1" type="Bus" depart="267.30"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Bus_2" type="Bus" depart="269.72"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Bus_3" type="Bus" depart="271.99"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Truck_1" type="Truck" depart="273.76"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_CNG_Rickshaw_1" type="CNG_Rickshaw" depart="275.06"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_CNG_Rickshaw_2" type="CNG_Rickshaw" depart="277.77"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_CNG_Rickshaw_3" type="CNG_Rickshaw" depart="278.99"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_CNG_Rickshaw_4" type="CNG_Rickshaw" depart="280.99"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_CNG_Rickshaw_5" type="CNG_Rickshaw" depart="282.71"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Motorcycle_1" type="Motorcycle" depart="285.58"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Motorcycle_2" type="Motorcycle" depart="287.39"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Motorcycle_3" type="Motorcycle" depart="289.86"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Motorcycle_4" type="Motorcycle" depart="291.21"><route edges="E4 E5" /></vehicle><vehicle id="traffic_R5_Motorcycle_5" type="Motorcycle" depart="292.96"><route edges="E4 E5" /></vehicle><!-- Traffic on R6 route --><vehicle id="traffic_R6_Private_Car_1" type="Private_Car" depart="294.82"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Private_Car_2" type="Private_Car" depart="297.65"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Private_Car_3" type="Private_Car" depart="299.21"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Private_Car_4" type="Private_Car" depart="301.63"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Private_Car_5" type="Private_Car" depart="303.33"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Private_Car_6" type="Private_Car" depart="305.89"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Bus_1" type="Bus" depart="308.09"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Bus_2" type="Bus" depart="310.72"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Bus_3" type="Bus" depart="311.84"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Truck_1" type="Truck" depart="314.10"><route edges="E2" /></vehicle><vehicle id="traffic_R6_CNG_Rickshaw_1" type="CNG_Rickshaw" depart="316.97"><route edges="E2" /></vehicle><vehicle id="traffic_R6_CNG_Rickshaw_2" type="CNG_Rickshaw" depart="318.17"><route edges="E2" /></vehicle><vehicle id="traffic_R6_CNG_Rickshaw_3" type="CNG_Rickshaw" depart="319.49"><route edges="E2" /></vehicle><vehicle id="traffic_R6_CNG_Rickshaw_4" type="CNG_Rickshaw" depart="321.44"><route edges="E2" /></vehicle><vehicle id="traffic_R6_CNG_Rickshaw_5" type="CNG_Rickshaw" depart="323.68"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Motorcycle_1" type="Motorcycle" depart="324.74"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Motorcycle_2" type="Motorcycle" depart="325.96"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Motorcycle_3" type="Motorcycle" depart="328.40"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Motorcycle_4" type="Motorcycle" depart="329.78"><route edges="E2" /></vehicle><vehicle id="traffic_R6_Motorcycle_5" type="Motorcycle" depart="332.72"><route edges="E2" /></vehicle><!-- Traffic on R7 route --><vehicle id="traffic_R7_Private_Car_1" type="Private_Car" depart="335.02"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Private_Car_2" type="Private_Car" depart="337.85"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Private_Car_3" type="Private_Car" depart="338.88"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Private_Car_4" type="Private_Car" depart="340.55"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Private_Car_5" type="Private_Car" depart="342.83"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Private_Car_6" type="Private_Car" depart="345.21"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Bus_1" type="Bus" depart="346.89"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Bus_2" type="Bus" depart="349.86"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Bus_3" type="Bus" depart="351.17"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Truck_1" type="Truck" depart="353.96"><route edges="E8" /></vehicle><vehicle id="traffic_R7_CNG_Rickshaw_1" type="CNG_Rickshaw" depart="356.32"><route edges="E8" /></vehicle><vehicle id="traffic_R7_CNG_Rickshaw_2" type="CNG_Rickshaw" depart="357.93"><route edges="E8" /></vehicle><vehicle id="traffic_R7_CNG_Rickshaw_3" type="CNG_Rickshaw" depart="360.01"><route edges="E8" /></vehicle><vehicle id="traffic_R7_CNG_Rickshaw_4" type="CNG_Rickshaw" depart="361.34"><route edges="E8" /></vehicle><vehicle id="traffic_R7_CNG_Rickshaw_5" type="CNG_Rickshaw" depart="363.35"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Motorcycle_1" type="Motorcycle" depart="365.74"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Motorcycle_2" type="Motorcycle" depart="366.75"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Motorcycle_3" type="Motorcycle" depart="369.49"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Motorcycle_4" type="Motorcycle" depart="372.19"><route edges="E8" /></vehicle><vehicle id="traffic_R7_Motorcycle_5" type="Motorcycle" depart="373.80"><route edges="E8" /></vehicle></routes>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2025-11-19 00:38:32 by Eclipse SUMO netedit Version 1.22.0
+<!-- generated on 2025-12-02 02:23:41 by Eclipse SUMO netedit Version 1.22.0
 <neteditConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
 
     <input>
-        <sumocfg-file value="C:\Users\mushf\OneDrive\Desktop\Route Optimization of EV\CustomRoadNetwork.sumocfg"/>
-        <additional-files value="C:\Users\mushf\OneDrive\Desktop\Route Optimization of EV\chargingStations.add.xml"/>
-        <route-files value="C:\Users\mushf\OneDrive\Desktop\Route Optimization of EV\CustomRoadNetwork.rou.xml"/>
-        <sumo-net-file value="C:\Users\mushf\OneDrive\Desktop\Route Optimization of EV\CustomRoadNetwork.net.xml"/>
+        <sumocfg-file value="C:\Users\mushf\OneDrive\Desktop\New folder (3)\Route-Optimization-of-Electric-Vehicles-in-Bangladesh\CustomRoadNetwork.sumocfg"/>
+        <additional-files value="C:\Users\mushf\OneDrive\Desktop\New folder (3)\Route-Optimization-of-Electric-Vehicles-in-Bangladesh\chargingStations.add.xml"/>
+        <route-files value="C:\Users\mushf\OneDrive\Desktop\New folder (3)\Route-Optimization-of-Electric-Vehicles-in-Bangladesh\CustomRoadNetwork.rou.xml"/>
+        <sumo-net-file value="C:\Users\mushf\OneDrive\Desktop\New folder (3)\Route-Optimization-of-Electric-Vehicles-in-Bangladesh\CustomRoadNetwork.net.xml"/>
     </input>
 
     <output>
-        <output-file value="C:\Users\mushf\OneDrive\Desktop\Route Optimization of EV\CustomRoadNetwork.net.xml"/>
+        <output-file value="C:\Users\mushf\OneDrive\Desktop\New folder (3)\Route-Optimization-of-Electric-Vehicles-in-Bangladesh\CustomRoadNetwork.net.xml"/>
     </output>
 
     <processing>
@@ -344,21 +344,26 @@
     <tlLogic id="J1" type="static" programID="0" offset="0">
         <phase duration="60" state="GGgrrGGG"/>
         <phase duration="5"  state="GGgrryyy"/>
-        <phase duration="30" state="GGGrrrrr"/>
+        <phase duration="5"  state="yyyrrrrr"/>
+        <phase duration="25" state="rrrrrrrr"/>
         <phase duration="60" state="rrrGGGrr"/>
         <phase duration="5"  state="rrryyyrr"/>
-        <phase duration="30" state="rrrrrrrr"/>
+        <phase duration="25" state="rrrrrrrr"/>
     </tlLogic>
     <tlLogic id="J2" type="static" programID="0" offset="0">
         <phase duration="60" state="GGGGgrrrrrGGGggrrrrrrrrrr"/>
         <phase duration="5"  state="yyyygrrrrryyyggrrrrrrrrrr"/>
-        <phase duration="30" state="rrrrGrrrrrrrrGGrrrrrrrrrr"/>
+        <phase duration="5"  state="rrrryrrrrrrrryyrrrrrrrrrr"/>
+        <phase duration="20" state="rrrrGrrrrrrrrGGrrrrrrrrrr"/>
+        <phase duration="5"  state="rrrryrrrrrrrryyrrrrrrrrrr"/>
         <phase duration="60" state="rrrrrGGGGgrrrrrGGGggrrrrr"/>
         <phase duration="5"  state="rrrrryyyygrrrrryyyggrrrrr"/>
-        <phase duration="30" state="rrrrrrrrrGrrrrrrrrGGrrrrr"/>
+        <phase duration="5"  state="rrrrrrrrryrrrrrrrryyrrrrr"/>
+        <phase duration="20" state="rrrrrrrrrGrrrrrrrrGGrrrrr"/>
+        <phase duration="5"  state="rrrrrrrrryrrrrrrrryyrrrrr"/>
         <phase duration="60" state="GrrrrrrrrrrrrrrrrrrrGGGGG"/>
-        <phase duration="5"  state="Grrrrrrrrrrrrrrrrrrryyyyy"/>
-        <phase duration="30" state="rrrrrrrrrrrrrrrrrrrrrrrrr"/>
+        <phase duration="5"  state="yrrrrrrrrrrrrrrrrrrryyyyy"/>
+        <phase duration="20" state="rrrrrrrrrrrrrrrrrrrrrrrrr"/>
     </tlLogic>
     <tlLogic id="J3" type="static" programID="0" offset="0">
         <phase duration="60" state="GGgrrGGG"/>
@@ -369,10 +374,10 @@
     <tlLogic id="J4" type="static" programID="0" offset="0">
         <phase duration="60" state="rrrGGGGGg"/>
         <phase duration="5"  state="rrryyyyyy"/>
-        <phase duration="30" state="rrrrrrrrr"/>
+        <phase duration="25" state="rrrrrrrrr"/>
         <phase duration="60" state="GGGGrrrrr"/>
-        <phase duration="5"  state="yyyGrrrrr"/>
-        <phase duration="30" state="rrrrrrrrr"/>
+        <phase duration="5"  state="yyyyrrrrr"/>
+        <phase duration="25" state="rrrrrrrrr"/>
     </tlLogic>
     <tlLogic id="J5" type="static" programID="0" offset="0">
         <phase duration="60" state="GGGG"/>
